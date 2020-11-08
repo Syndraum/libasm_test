@@ -11,10 +11,16 @@ t_cmp	*filecmp(int f1, int f2){
 	while (get_next_line(f1, &cmp->line1) > 0 || get_next_line(f2, &cmp->line2) > 0)
 	{
 		(cmp->line)++;
-		if((cmp->diff = strcmp(cmp->line1, cmp->line2)))
+		cmp->diff = strcmp(cmp->line1, cmp->line2);
+		free (cmp->line1);
+		free (cmp->line2);
+		if(cmp->diff)
 			return cmp;
+
 	}
 	cmp->diff = strcmp(cmp->line1, cmp->line2);
+	free (cmp->line1);
+	free (cmp->line2);
 	return cmp;
 }
 
@@ -46,6 +52,7 @@ int	u_write(int log, int right, const void *buf, size_t count){
 			dprintf(log, " ERROR\torg file\t: '%s'\n\tYour file\t: '%s'\n", cmp->line1, cmp->line2);
 			error = 1;
 		}
+		free(cmp);
 	}
 	if (org != your || e_org != e_your){
 		dprintf(log, " ERROR\twrite return\t: %zd\terrno : %d\n\tYour\t\t: %zd\terrno : %d\n", org, e_org, your, e_your);
