@@ -13,6 +13,7 @@ int is_same_sign(int i, int j){
 int	u_strcmp(int log, const char *s1, const char *s2){
 	int org;
 	int your;
+	int error = 0;
 
 	org = strcmp(s1, s2);
 	your = ft_strcmp(s1, s2);
@@ -20,12 +21,10 @@ int	u_strcmp(int log, const char *s1, const char *s2){
 	printf("%s '%s' '%s' ", TESTING, s1, s2);
 	if (!is_same_sign(org, your)){
 		dprintf(log, " ERROR\tstrcmp return\t: %d\n\tYour\t\t: %d\n", org, your);
-		print_result(1);
-		return 1;
+		error = 1;
 	}
-	dprintf(log, " %d\n", your);
-	print_result(0);
-	return 0;
+	print_result(error);
+	return error;
 }
 
 int t_strcmp(int log){
@@ -49,7 +48,7 @@ int t_strcmp(int log){
 	};
 	int i = -1;
 	int error = 0;
-	print_title(log, "TEST STRLEN");
+	print_title(log, "TEST STRCMP");
 	while (arg1[++i]){
 		error += u_strcmp(log, arg1[i], arg2[i]);
 	}

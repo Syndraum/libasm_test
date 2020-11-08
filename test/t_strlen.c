@@ -13,8 +13,6 @@ int u_strlen(int log, const char *str){
 		dprintf(log, " ERROR\tstrlen return\t: %d\n\tYour\t\t: %d\n", org, your);
 		error = 1;
 	}
-	else
-		dprintf(log, " %d\n", your);
 	print_result(error);
 	return error;
 }
@@ -34,6 +32,5 @@ int t_strlen(int log){
 	while (array[++i]){
 		error += u_strlen(log, array[i]);
 	}
-	// print_result(error);
 	return error;
 }

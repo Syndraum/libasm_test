@@ -1,7 +1,7 @@
 #include <header.h>
 
 int	u_write(int log, int right, const void *buf, size_t count){
-	int org, your;
+	ssize_t org, your;
 	int e_org, e_your;
 	int fd_org, fd_your;
 	int error = 0;
@@ -18,11 +18,15 @@ int	u_write(int log, int right, const void *buf, size_t count){
 	your = ft_write(fd_your, buf, count);
 	e_your = errno;
 	if (org != your || e_org != e_your){
-		dprintf(log, " ERROR\twrite return\t: %d\terrno : %d\n\tYour\t\t: %d\terrno : %d\n", org, e_org, your, e_your);
+		dprintf(log, " ERROR\twrite return\t: %zd\terrno : %d\n\tYour\t\t: %zd\terrno : %d\n", org, e_org, your, e_your);
 		error = 1;
 	}
-	else
-		dprintf(log, " %d %d\n", your, e_your);
+	// else
+	// 	dprintf(log, " %zd %d\n", your, e_your);
+	close(fd_org);
+	close(fd_your);
+	remove("org.txt");
+	remove("your.txt");
 	print_result(error);
 	return error;
 }

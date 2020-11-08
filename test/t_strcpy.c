@@ -4,6 +4,7 @@ int	u_strcpy(int log, const char *str){
 	char	*org;
 	char	*your;
 	int		len;
+	int		error = 0;
 
 	len = strlen(str) + 1;
 	org = malloc(len);
@@ -14,16 +15,12 @@ int	u_strcpy(int log, const char *str){
 	printf("%s '%s' ", TESTING, str);
 	if (strncmp(org, your, len)){
 		dprintf(log, " ERROR\tstrcpy return\t: '%s'\n\tYour\t\t: '%s'\n", org, your);
-		print_result(1);
-		free(org);
-		free(your);
-		return 1;
+		error = 1;
 	}
-	dprintf(log, " '%s'\n", your);
-	print_result(0);
+	print_result(error);
 	free(org);
 	free(your);
-	return 0;
+	return error;
 }
 
 int	t_strcpy(int log){
@@ -41,6 +38,5 @@ int	t_strcpy(int log){
 	while (array[++i]){
 		error += u_strcpy(log, array[i]);
 	}
-	// print_result(error);
 	return error;
 }

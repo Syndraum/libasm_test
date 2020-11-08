@@ -9,5 +9,6 @@ int main(int argc, char const *argv[])
 	t_strcpy(log);
 	t_strcmp(log);
 	t_write(log);
+	close(log);
 	return 0;
 }
