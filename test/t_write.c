@@ -18,7 +18,7 @@ int	u_write(int log, int right, const void *buf, size_t count){
 	your = ft_write(fd_your, buf, count);
 	e_your = errno;
 	if (org != your || e_org != e_your){
-		dprintf(log, "ERROR\twrite return\t: %d\terrno : %d\n\tYour\t\t: %d\terrno : %d\n", org, e_org, your, e_your);
+		dprintf(log, " ERROR\twrite return\t: %d\terrno : %d\n\tYour\t\t: %d\terrno : %d\n", org, e_org, your, e_your);
 		error = 1;
 	}
 	else
@@ -31,21 +31,25 @@ int	t_write(int log){
 	int wronly = O_WRONLY | O_CREAT | O_TRUNC;
 	int rdonly = O_RDONLY;
 	const char * bufs[] = {
+		"Bonjour",
+		"Bonjour",
+		"Bonjour",
 		"",
 		NULL
 	};
 	int counts[] = {
+		7,
+		3,
+		10,
 		2,
 		2
 	};
-	int size = 2, i = -1, error = 0;;
+	int size = 5, i = -1, error = 0;;
 
 	print_title(log, "TEST WRITE");
-	u_write(log, wronly, "a ", 2);
-	u_write(log, wronly, NULL, 2);
-	return 0;
 	while (++i < size){
 		error += u_write(log, wronly, bufs[i], counts[i]);
 	}
+	error += u_write(log, rdonly, bufs[0], counts[0]);
 	return error;
 }

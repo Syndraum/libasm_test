@@ -10,7 +10,7 @@ int u_strlen(int log, const char *str){
 	dprintf(log, "Testing '%s'\n", str);
 	printf("%s '%s' ", TESTING, str);
 	if (org != your){
-		dprintf(log, "ERROR\tstrlen return\t: %d\n\tYour\t\t: %d\n", org, your);
+		dprintf(log, " ERROR\tstrlen return\t: %d\n\tYour\t\t: %d\n", org, your);
 		error = 1;
 	}
 	else

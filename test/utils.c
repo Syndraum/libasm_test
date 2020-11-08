@@ -7,7 +7,7 @@ void	print_title(int log, char *title){
 
 void	print_result(int n_error){
 	if (n_error)
-		printf("\e[31mX\e[0m\n");
+		printf("\e[31m[FAIL]\e[0m\n");
 	else
-		printf("\e[32mV\e[0m\n");
+		printf("\e[32m[OK]\e[0m\n");
 }

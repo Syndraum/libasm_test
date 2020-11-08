@@ -19,7 +19,7 @@ int	u_strcmp(int log, const char *s1, const char *s2){
 	dprintf(log, "Testing '%s' '%s'\n", s1, s2);
 	printf("%s '%s' '%s' ", TESTING, s1, s2);
 	if (!is_same_sign(org, your)){
-		dprintf(log, "ERROR\tstrcmp return\t: %d\n\tYour\t\t: %d\n", org, your);
+		dprintf(log, " ERROR\tstrcmp return\t: %d\n\tYour\t\t: %d\n", org, your);
 		print_result(1);
 		return 1;
 	}

@@ -13,7 +13,7 @@ int	u_strcpy(int log, const char *str){
 	dprintf(log, "Testing '%s'\n", str);
 	printf("%s '%s' ", TESTING, str);
 	if (strncmp(org, your, len)){
-		dprintf(log, "ERROR\tstrcpy return\t: '%s'\n\tYour\t\t: '%s'\n", org, your);
+		dprintf(log, " ERROR\tstrcpy return\t: '%s'\n\tYour\t\t: '%s'\n", org, your);
 		print_result(1);
 		free(org);
 		free(your);
