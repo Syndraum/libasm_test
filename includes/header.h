@@ -6,10 +6,10 @@
 # include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <errno.h>
+# include "get_next_line.h"
 
-# define ERROR_ARG "Error: No function selected\n"
-# define ERROR_FUNC_UNKNOW "Error: Function unknow\n"
-# define ERROR_NEED_ARG "Error: Need argument\n"
+# define TESTING "\e[94mTesting\e[39m"
 
 size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char * dst, const char * src);
@@ -18,6 +18,12 @@ ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 ssize_t ft_read(int fildes, void *buf, size_t nbyte);
 char	*ft_strdup(const char *s1);
 
-int		t_strlen();
+void	print_title(int log, char *title);
+void	print_result(int n_error);
+
+int		t_strlen(int log);
+int		t_strcpy(int log);
+int		t_strcmp(int log);
+int		t_write(int log);
 
 #endif

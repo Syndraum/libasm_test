@@ -1,9 +1,9 @@
 PROJECTDIR='../libasm'
 
-make -C $PROJECTDIR
+make -C $PROJECTDIR re
 ln -s $PROJECTDIR/libasm.a .
 
-clang main.c test/t_strlen.c  -I ./includes -L . -lasm
+clang main.c test/*.c  -I ./includes -L . -lasm
 ./a.out
 
 rm libasm.a
