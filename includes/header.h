@@ -11,6 +11,16 @@
 
 # define TESTING "\e[94mTesting\e[39m"
 
+
+typedef struct	s_cmp
+{
+	int			diff;
+	int			line;
+	char		*line1;
+	char		*line2;
+}				t_cmp;
+
+
 size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char * dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -25,5 +35,6 @@ int		t_strlen(int log);
 int		t_strcpy(int log);
 int		t_strcmp(int log);
 int		t_write(int log);
+int		t_strdup(int log);
 
 #endif

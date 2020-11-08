@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:47:32 by roalvare          #+#    #+#             */
-/*   Updated: 2019/10/28 18:20:40 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/11/08 18:39:34 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ t_list			*line_to_list(t_file *f, int *brk, int *count);
 void			*list_to_str(t_list *list, char **line, int len);
 int				ft_lstnew_back(t_list **alst, char c);
 void			*free_list(t_list *list);
+t_file			*get_file(int fd, t_file **file);
+int				del_file(int fd, t_file **file);
 
 #endif

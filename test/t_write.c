@@ -1,10 +1,29 @@
 #include <header.h>
 
+t_cmp	*filecmp(int f1, int f2){
+	t_cmp	*cmp;
+
+	cmp = malloc(sizeof(t_cmp));
+	cmp->line = 0;
+	cmp->line1 = NULL;
+	cmp->line2 = NULL;
+	cmp->diff = 0;
+	while (get_next_line(f1, &cmp->line1) > 0 || get_next_line(f2, &cmp->line2) > 0)
+	{
+		(cmp->line)++;
+		if((cmp->diff = strcmp(cmp->line1, cmp->line2)))
+			return cmp;
+	}
+	cmp->diff = strcmp(cmp->line1, cmp->line2);
+	return cmp;
+}
+
 int	u_write(int log, int right, const void *buf, size_t count){
-	ssize_t org, your;
-	int e_org, e_your;
-	int fd_org, fd_your;
-	int error = 0;
+	ssize_t	org, your;
+	t_cmp	*cmp;
+	int		e_org, e_your;
+	int		fd_org, fd_your;
+	int		error = 0;
 
 	fd_org = open("org.txt", right, S_IRWXU);
 	fd_your = open("your.txt", right, S_IRWXU);
@@ -17,14 +36,21 @@ int	u_write(int log, int right, const void *buf, size_t count){
 	errno = 0;
 	your = ft_write(fd_your, buf, count);
 	e_your = errno;
+	close(fd_org);
+	close(fd_your);
+	fd_org = open("org.txt", O_RDONLY);
+	fd_your = open("your.txt", O_RDONLY);
+	if (e_org == 0){
+		cmp = filecmp(fd_org, fd_your);
+		if (cmp->diff){
+			dprintf(log, " ERROR\torg file\t: '%s'\n\tYour file\t: '%s'\n", cmp->line1, cmp->line2);
+			error = 1;
+		}
+	}
 	if (org != your || e_org != e_your){
 		dprintf(log, " ERROR\twrite return\t: %zd\terrno : %d\n\tYour\t\t: %zd\terrno : %d\n", org, e_org, your, e_your);
 		error = 1;
 	}
-	// else
-	// 	dprintf(log, " %zd %d\n", your, e_your);
-	close(fd_org);
-	close(fd_your);
 	remove("org.txt");
 	remove("your.txt");
 	print_result(error);

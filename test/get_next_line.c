@@ -6,31 +6,33 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 11:25:04 by syndraum          #+#    #+#             */
-/*   Updated: 2020/11/08 15:02:03 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/11/08 18:38:30 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "get_next_line.h"
 
 int		get_next_line(int fd, char **line)
 {
-	static t_file	file = { 0, {0}, file.buf, NULL};
+	static t_file	*lst_file = NULL;
+	t_file			*file;
 	t_list			*lst;
 	int				brk;
 	int				count;
 
 	if (line == NULL || BUFFER_SIZE <= 0)
 		return (-1);
-	file.fd = fd;
+	if (!(file = get_file(fd, &lst_file)))
+		return (-1);
 	brk = BUFFER_SIZE;
 	count = 0;
-	if (!(lst = line_to_list(&file, &brk, &count)))
+	if (!(lst = line_to_list(file, &brk, &count)))
 		return (-1);
 	if (!(list_to_str(lst, line, count)))
 		return (-1);
 	free_list(lst);
 	if (brk == 0)
-		return (0);
+		return (del_file(file->fd, &lst_file));
 	return (1);
 }
 
