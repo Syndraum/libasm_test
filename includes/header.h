@@ -35,6 +35,7 @@ int		t_strlen(int log);
 int		t_strcpy(int log);
 int		t_strcmp(int log);
 int		t_write(int log);
+int		t_read(int log);
 int		t_strdup(int log);
 
 #endif

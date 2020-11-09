@@ -71,6 +71,7 @@ int	t_write(int log){
 		"Bonjour",
 		"Bonjour",
 		"Bonjour",
+		"Bonjour",
 		"",
 		NULL
 	};
@@ -78,6 +79,7 @@ int	t_write(int log){
 		7,
 		3,
 		10,
+		0,
 		2,
 		2
 	};
