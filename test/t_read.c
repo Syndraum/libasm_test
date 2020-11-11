@@ -27,7 +27,7 @@ int	u_read(int log, int right, void *buf, size_t count){
 		dprintf(log, " ERROR\tread return\t: %zd\terrno : %d\n\tYour\t\t: %zd\terrno : %d\n", org, e_org, your, e_your);
 		error = 1;
 	}
-	if (s_your && s_org){
+	if (s_your || s_org){
 		if (strcmp(s_your, s_org)){
 			dprintf(log, " ERROR\tread buf\t: %s\n\tYour\t\t: %s\n", s_org, s_your);
 			error = 1;

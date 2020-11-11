@@ -23,6 +23,7 @@ int t_strlen(int log){
 		"test",
 		"	",
 		"jkwsfn0qjqonfonoibnonwf",
+		"atten\0tion",
 		NULL
 	};
 	int i = -1;
